@@ -1,0 +1,24 @@
+/* Styles for MapTest */
+
+/* Header */
+header h1 { text-align: center; }
+
+/* Remove padding from page */
+.ui-content { padding: 0; }
+
+/* Styles for the map */
+#map-canvas {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+/* Remove close button on InfoWindow for state */
+/* image source ends with imgs8.png */
+#map-canvas img[src$="imgs8.png"] { display: none; }
+
+/* Center the state artwork in the InfoWindow */
+#artwork {
+	display: block;
+	margin: 0 auto;
+}

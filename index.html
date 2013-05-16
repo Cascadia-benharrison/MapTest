@@ -4,21 +4,24 @@
 		<meta charset="UTF-8">
 		<title>MapTest</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+  		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css">
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb7T4kSmVck4URg07rWdjgRLwVNZuw_B4&sensor=false"></script>
+		<script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js"></script>
 		
-		<script src="js/myscripts.js"></script>
-		<link rel="stylesheet" href="css/mystyles.css">
+		<!-- Script and Stylesheet for the Map Screen -->
+		<script src="js/map.js"></script>
+		<link rel="stylesheet" href="css/mapstyles.css">
 	</head>
 	<body>
 		
         <div id="map" data-role="page">
-        	<div data-role="header">
+        	<header data-role="header">
             	<h1>State Name</h1>
-            </div>
+            </header>
             <div data-role="content">
-            	<p>Google Map goes here</p>
+            	<div id="map-canvas"></div>
             </div>
         </div>
 		
