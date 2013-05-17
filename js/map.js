@@ -96,15 +96,8 @@ function initialize() {
 	
 	// Keep the map centered when switching between portrait/landscape mode
 	// If window size is larger than 666px, set zoom to 4, otherwise set zoom to 3
-	var center;
-	function calculateCenter() {
-		center = map.getCenter();
-	}
-	google.maps.event.addDomListener(map, 'idle', function() {
-		calculateCenter();
-	});
 	google.maps.event.addDomListener(window, 'resize', function() {
-		map.setCenter(center);
+		map.setCenter(centerOfUSA);
 		screenWidth = $(window).width();
 		if (screenWidth > 666) {
 			map.setZoom(4);
@@ -117,30 +110,34 @@ function initialize() {
 	// Use LatLngBounds(Southwest Latlng, Northeast LatLng) to define the rectangle,
 	// then check if center of USA is within the rectangle on the 'move' event
 	// Found solution here: http://stackoverflow.com/questions/4631382/google-maps-limit-panning
-		boundingRect = new google.maps.LatLngBounds( // The bounding rect
-			new google.maps.LatLng(9.102, -159.258), // Southwest corner of bounding rect
-			new google.maps.LatLng(49.838, -54.492)  // Northeast corner or bounding rect
-		);
-		google.maps.event.addListener(map, 'drag', function() {
-			if (boundingRect.contains(map.getCenter())) {
-				return; // Center is inside bounding Rect, do nothin'
-			}
-			
-			// We're out of bounds - Move the map back within the bounds
-		    var x = center.lng(),
+	var center;
+	boundingRect = new google.maps.LatLngBounds( // The bounding rect
+		new google.maps.LatLng(15.114553, -163.652344), // Southwest corner of bounding rect
+		new google.maps.LatLng(49.037868, -60.820313)  // Northeast corner or bounding rect
+	);
+	google.maps.event.addListener(map, 'dragend', function() {
+		if (boundingRect.contains(map.getCenter())) {
+			return; // Center is inside bounding Rect, do nothin'
+		}
+		
+		// We're out of bounds - Move the map back within the bounds
+		//alert("outside bounding box");
+		var center = map.getCenter(),
+		    x = center.lng(),
 			y = center.lat(),
 			maxX = boundingRect.getNorthEast().lng(),
-			maxY = strictBounds.getNorthEast().lat(),
-			minX = strictBounds.getSouthWest().lng(),
-			minY = strictBounds.getSouthWest().lat();
-		
-		    if (x < minX) x = minX;
-		    if (x > maxX) x = maxX;
-		    if (y < minY) y = minY;
-		    if (y > maxY) y = maxY;
-		
-		    map.setCenter(new google.maps.LatLng(y, x));
-		});
+			maxY = boundingRect.getNorthEast().lat(),
+			minX = boundingRect.getSouthWest().lng(),
+			minY = boundingRect.getSouthWest().lat();
+	
+	    if (x < minX) x = minX;
+	    if (x > maxX) x = maxX;
+	    if (y < minY) y = minY;
+	    if (y > maxY) y = maxY;
+	
+	    //map.setCenter(new google.maps.LatLng(y, x));
+	    map.panTo(new google.maps.LatLng(y, x));
+	});
 	
 } // end initialize()
 
