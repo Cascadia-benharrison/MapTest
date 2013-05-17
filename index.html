@@ -8,7 +8,6 @@
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb7T4kSmVck4URg07rWdjgRLwVNZuw_B4&sensor=false"></script>
-		<script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js"></script>
 		
 		<!-- Script and Stylesheet for the Map Screen -->
 		<script src="js/map.js"></script>
@@ -17,12 +16,19 @@
 	<body>
 		
         <div id="map" data-role="page">
-        	<header data-role="header">
-            	<h1>State Name</h1>
+        	<header data-role="header" data-position="fixed">
+            	<h3>State Name</h3>
             </header>
             <div data-role="content">
             	<div id="map-canvas"></div>
             </div>
+            <footer data-role="footer" data-position="fixed">
+            	<div data-role="navbar" data-iconpos="left">
+            		<ul>
+            			<li><a href="#" data-role="back" data-icon="back">Back</a></li>
+            		</ul>
+            	</div>
+            </footer>
         </div>
 		
 	</body>

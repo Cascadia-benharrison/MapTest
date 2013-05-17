@@ -9,6 +9,7 @@
 var map, // The Google Map
 	zoomLevel, // The zoom level (larger sreens should be zoomed in more)
 	screenWidth, // The width of the screen
+	centerOfUSA = new google.maps.LatLng(35, -96), // The center Lat/Lon of the USA
 	state; // The state we want to point out
 
 function initialize() {
@@ -18,7 +19,7 @@ function initialize() {
 	var stateLatLon = new google.maps.LatLng(47.010226, -109.863281); // temp
 	
 	// Determine the screen size using JQuery
-	screenWidth = $(window).width();
+	screenWidth = screen.width;
 	// If screen size is larger than 666px, set zoom to 4, otherwise set to 3
 	if (screenWidth > 666) {
 		zoomLevel = 4;
@@ -29,7 +30,7 @@ function initialize() {
 	// Set the options for the Google Map
 	var mapOptions = {
     	zoom: zoomLevel, // Zoom Level
-    	center: new google.maps.LatLng(35, -96), // Center the map middle of USA
+    	center: centerOfUSA, // Center the map middle of USA
     	disableDefaultUI: true, // Don't show pegman and map controls
     	mapTypeId: google.maps.MapTypeId.TERRAIN // Terrain map type
 	};
@@ -111,7 +112,37 @@ function initialize() {
 			map.setZoom(3);
 		}
 	});
-}
+	
+	// Keep center of USA within a certain rectangle, so user can't just pan around the whole world
+	// Use LatLngBounds(Southwest Latlng, Northeast LatLng) to define the rectangle,
+	// then check if center of USA is within the rectangle on the 'move' event
+	// Found solution here: http://stackoverflow.com/questions/4631382/google-maps-limit-panning
+		boundingRect = new google.maps.LatLngBounds( // The bounding rect
+			new google.maps.LatLng(9.102, -159.258), // Southwest corner of bounding rect
+			new google.maps.LatLng(49.838, -54.492)  // Northeast corner or bounding rect
+		);
+		google.maps.event.addListener(map, 'drag', function() {
+			if (boundingRect.contains(map.getCenter())) {
+				return; // Center is inside bounding Rect, do nothin'
+			}
+			
+			// We're out of bounds - Move the map back within the bounds
+		    var x = center.lng(),
+			y = center.lat(),
+			maxX = boundingRect.getNorthEast().lng(),
+			maxY = strictBounds.getNorthEast().lat(),
+			minX = strictBounds.getSouthWest().lng(),
+			minY = strictBounds.getSouthWest().lat();
+		
+		    if (x < minX) x = minX;
+		    if (x > maxX) x = maxX;
+		    if (y < minY) y = minY;
+		    if (y > maxY) y = maxY;
+		
+		    map.setCenter(new google.maps.LatLng(y, x));
+		});
+	
+} // end initialize()
 
 // Add an event listener to the window object that will call the initialize function
 // once the page has loaded
