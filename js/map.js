@@ -135,7 +135,9 @@ function initialize() {
 	    if (y < minY) y = minY;
 	    if (y > maxY) y = maxY;
 	
-	    map.panTo(stateLatLon);  // Pan the map back to our state
+	    window.setTimeout(function() {
+      		map.panTo(stateLatLon);  // Pan the map back to our state after a half-second
+    	}, 500);
 	});
 	
 } // end initialize()
