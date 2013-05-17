@@ -112,8 +112,8 @@ function initialize() {
 	// Found solution here: http://stackoverflow.com/questions/4631382/google-maps-limit-panning
 	var center;
 	boundingRect = new google.maps.LatLngBounds( // The bounding rect
-		new google.maps.LatLng(15.114553, -163.652344), // Southwest corner of bounding rect
-		new google.maps.LatLng(49.037868, -60.820313)  // Northeast corner or bounding rect
+		new google.maps.LatLng(9.275622, -173.496094), // Southwest corner of bounding rect
+		new google.maps.LatLng(55.178868, -51.328125)  // Northeast corner or bounding rect
 	);
 	google.maps.event.addListener(map, 'dragend', function() {
 		if (boundingRect.contains(map.getCenter())) {
@@ -135,8 +135,7 @@ function initialize() {
 	    if (y < minY) y = minY;
 	    if (y > maxY) y = maxY;
 	
-	    //map.setCenter(new google.maps.LatLng(y, x));
-	    map.panTo(new google.maps.LatLng(y, x));
+	    map.panTo(stateLatLon);  // Pan the map back to our state
 	});
 	
 } // end initialize()
