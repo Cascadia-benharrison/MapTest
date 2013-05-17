@@ -32,7 +32,8 @@ function initialize() {
     	zoom: zoomLevel, // Zoom Level
     	center: centerOfUSA, // Center the map middle of USA
     	disableDefaultUI: true, // Don't show pegman and map controls
-    	mapTypeId: google.maps.MapTypeId.TERRAIN // Terrain map type
+    	click: false, // Don't allow clicking on map
+    	mapTypeId: google.maps.MapTypeId.ROADMAP // ROADMAP map type
 	};
 	
 	// The styles array for the map (only show the outlines of the states, no labels)
@@ -136,8 +137,8 @@ function initialize() {
 	    if (y > maxY) y = maxY;
 	
 	    window.setTimeout(function() {
-      		map.panTo(stateLatLon);  // Pan the map back to our state after a half-second
-    	}, 500);
+      		map.panTo(stateLatLon);  // Pan the map back to our state after 300 milliseconds
+    	}, 300);
 	});
 	
 } // end initialize()

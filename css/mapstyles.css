@@ -1,10 +1,7 @@
 /* Styles for MapTest */
 
 /* Header */
-header h1 { text-align: center; }
-
-/* Remove padding from page */
-.ui-content { padding: 0; }
+#map header h1 { text-align: center; }
 
 /* Styles for the map */
 #map-canvas {
@@ -21,4 +18,26 @@ header h1 { text-align: center; }
 #artwork {
 	display: block;
 	margin: 0 auto;
+}
+
+/* Set size of map container based on device width */
+@media screen and (max-width: 320px) {
+	#map_container {
+		min-width: 260px;
+		min-height: 350px;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	#map_container {
+		min-width: 260px;
+		min-height: 480px;
+	}
+}
+
+@media screen and (min-width: 481px) {
+	#map_container {
+		min-width: 260px;
+		min-height: 800px;
+	}
 }
