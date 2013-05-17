@@ -115,7 +115,7 @@ function initialize() {
 		new google.maps.LatLng(15.114553, -163.652344), // Southwest corner of bounding rect
 		new google.maps.LatLng(49.037868, -60.820313)  // Northeast corner or bounding rect
 	);
-	google.maps.event.addListener(map, 'dragend', function() {
+	google.maps.event.addListener(map, 'drag', function() {
 		if (boundingRect.contains(map.getCenter())) {
 			return; // Center is inside bounding Rect, do nothin'
 		}
