@@ -6,21 +6,20 @@
  * Ben Harrison
  */
 
-var map, // The Google Map
+// Run this code on pageinit of the #map page
+$(document).delegate("#map", "pageinit", function() {
+	
+	var map, // The Google Map
 	zoomLevel, // The zoom level (larger sreens should be zoomed in more)
 	screenWidth, // The width of the screen
 	centerOfUSA = new google.maps.LatLng(35, -96), // The center Lat/Lon of the USA
-	state; // The state we want to point out
-
-function initialize() {
-	
 	// Get the latitude and longitude of the state we want to point out
 	// CURRENTLY PLACEHOLDER - POINTS AT MONTANA
-	var stateLatLon = new google.maps.LatLng(47.010226, -109.863281); // temp
+	stateLatLon = new google.maps.LatLng(47.010226, -109.863281), // temp
+	state; // The state we want to point out
 	
-	// Determine the screen size using JQuery
+	// Determine the window size to set zoom
 	screenWidth = screen.width;
-	// If screen size is larger than 666px, set zoom to 4, otherwise set to 3
 	if (screenWidth > 666) {
 		zoomLevel = 4;
 	} else {
@@ -29,11 +28,11 @@ function initialize() {
 	
 	// Set the options for the Google Map
 	var mapOptions = {
-    	zoom: zoomLevel, // Zoom Level
-    	center: centerOfUSA, // Center the map middle of USA
-    	disableDefaultUI: true, // Don't show pegman and map controls
-    	click: false, // Don't allow clicking on map
-    	mapTypeId: google.maps.MapTypeId.ROADMAP // ROADMAP map type
+		zoom: zoomLevel, // Zoom Level
+		center: stateLatLon, // Center the map on the state
+		disableDefaultUI: true, // Don't show pegman and map controls
+		click: false, // Don't allow clicking on map
+		mapTypeId: google.maps.MapTypeId.ROADMAP // ROADMAP map type
 	};
 	
 	// The styles array for the map (only show the outlines of the states, no labels)
@@ -84,6 +83,16 @@ function initialize() {
 	
 	// Create the new Google Map with the above mapOptions
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	// Determine the screen size using JQuery
+	screenWidth = screen.width;
+	// If screen size is larger than 666px, set zoom to 4, otherwise set to 3
+	if (screenWidth > 666) {
+		map.setZoom(4);
+	} else {
+		map.setZoom(3);
+	}
+	
+	
 	
 	// Set the options set in the stylesArray
 	map.setOptions({styles: stylesArray});
@@ -97,19 +106,19 @@ function initialize() {
 	
 	// Keep the map centered when switching between portrait/landscape mode
 	// If window size is larger than 666px, set zoom to 4, otherwise set zoom to 3
-	google.maps.event.addDomListener(window, 'resize', function() {
-		map.setCenter(centerOfUSA);
-		screenWidth = $(window).width();
+	$(window).resize(function() {
+		screenWidth = screen.width;
 		if (screenWidth > 666) {
 			map.setZoom(4);
 		} else {
 			map.setZoom(3);
 		}
+		map.setCenter(centerOfUSA);
 	});
 	
-	// Keep center of USA within a certain rectangle, so user can't just pan around the whole world
+	// Keep state within a certain rectangle, so user can't just pan around the whole world
 	// Use LatLngBounds(Southwest Latlng, Northeast LatLng) to define the rectangle,
-	// then check if center of USA is within the rectangle on the 'move' event
+	// then check if state is within the rectangle on the 'move' event
 	// Found solution here: http://stackoverflow.com/questions/4631382/google-maps-limit-panning
 	var center;
 	boundingRect = new google.maps.LatLngBounds( // The bounding rect
@@ -139,10 +148,14 @@ function initialize() {
 	    window.setTimeout(function() {
       		map.panTo(stateLatLon);  // Pan the map back to our state after 300 milliseconds
     	}, 300);
-	});
-	
-} // end initialize()
+	}); // end dragend listener
+}); // end #map pageinit function
 
-// Add an event listener to the window object that will call the initialize function
-// once the page has loaded
-google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+
+
+
+
+
