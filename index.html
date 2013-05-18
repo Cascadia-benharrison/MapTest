@@ -17,17 +17,20 @@
 	<body>
 		
 		<div id="home" data-role="page">
-			<header data-role="header" data-position="fixed">
+			<header data-role="header" data-position="fixed" data-id"st_header">
 				<h3>Home</h3>
 			</header>
 			<div data-role="content">
 				<a href="#map" data-role="button" data-transition="slide"
 				data-icon="arrow-r" data-iconpos="right">Map page</a>
 			</div>
+			<footer data-role="footer" data-position="fixed" data-id="st_footer">
+				<h3>Footer</h3>
+			</footer>
 		</div>
 		
         <div id="map" data-role="page">
-        	<header data-role="header" data-position="fixed">
+        	<header data-role="header" data-position="fixed" data-id="st_header">
             	<h3>State Name</h3>
             </header>
             <div data-role="content">
@@ -35,7 +38,7 @@
             		<div id="map-canvas"></div>
             	</div> 
             </div>
-            <footer data-role="footer" data-position="fixed">
+            <footer data-role="footer" data-position="fixed" data-id="st_footer">
             	<div data-role="navbar" data-iconpos="left">
             		<ul>
             			<li><a href="#" data-rel="back" data-icon="back" data-transition="slide" data-direction="reverse">Back</a></li>
