@@ -11,18 +11,34 @@
 		<script src="js/jquery.ui.map.min.js"></script>
 		
 		<!-- Script and Stylesheet for the Map Screen -->
+		<script src="js/test.js"></script>
 		<script src="js/map.js"></script>
 		<link rel="stylesheet" href="css/mapstyles.css">
 	</head>
 	<body>
 		
-		<div id="home" data-role="page">
-			<header data-role="header" data-position="fixed" data-id"st_header">
-				<h3>Home</h3>
+		<div id="test_home" data-role="page">
+			<header data-role="header" data-position="fixed" data-id="st_header">
+				<h3>StateTuned</h3>
 			</header>
 			<div data-role="content">
-				<a href="#map" data-role="button" data-transition="slide"
-				data-icon="arrow-r" data-iconpos="right">Map page</a>
+				<ul>
+					<!-- Buttons for each state appended here by test.js -->
+				</ul>
+			</div>
+			<footer data-role="footer" data-position="fixed" data-id="st_footer">
+				<h3>Footer</h3>
+			</footer>
+		</div>
+		
+		<div id="second" data-role="page">
+			<header data-role="header" data-position="fixed" data-id="st_header">
+				<h3>StateTuned</h3>
+			</header>
+			<div data-role="content">
+				<h1></h1>
+				<a href="#map" data-role="button" data-icon="arrow-r" data-iconpos="right">Map</a>
+				<a href="#test_home" data-role="button" data-icon="back">Home</a>
 			</div>
 			<footer data-role="footer" data-position="fixed" data-id="st_footer">
 				<h3>Footer</h3>
@@ -31,17 +47,16 @@
 		
         <div id="map" data-role="page">
         	<header data-role="header" data-position="fixed" data-id="st_header">
-            	<h3>State Name</h3>
+            	<h3>StateTuned</h3>
             </header>
             <div data-role="content">
-            	<div id="map_container" class="ui-bar ui-corner-all ui-shadow">
-            		<div id="map-canvas"></div>
-            	</div> 
+            	<h3></h3>
+            	<div id="map-canvas"></div>
             </div>
             <footer data-role="footer" data-position="fixed" data-id="st_footer">
             	<div data-role="navbar" data-iconpos="left">
             		<ul>
-            			<li><a href="#" data-rel="back" data-icon="back" data-transition="slide" data-direction="reverse">Back</a></li>
+            			<li><a href="#" data-rel="back" data-icon="back">Back</a></li>
             		</ul>
             	</div>
             </footer>

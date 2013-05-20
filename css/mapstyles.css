@@ -1,13 +1,16 @@
 /* Styles for MapTest */
 
-/* Header */
-#map header h1 { text-align: center; }
+/* State Name */
+#map > div[data-role="content"] > h3 {
+	margin: 0;
+	text-align: center;
+}
 
-/* Styles for the map */
 #map-canvas {
-	position: absolute;
-	width: 100%;
-	height: 100%;
+	display: block;
+	margin: 0 auto;
+	width: 98%;
+	/* height calculdated in map.js */
 }
 
 /* Remove close button on InfoWindow for state */
@@ -15,29 +18,7 @@
 #map-canvas img[src$="imgs8.png"] { display: none; }
 
 /* Center the state artwork in the InfoWindow */
-#artwork {
+#map .artwork {
 	display: block;
 	margin: 0 auto;
-}
-
-/* Set size of map container based on device width */
-@media screen and (max-width: 320px) {
-	#map_container {
-		min-width: 260px;
-		min-height: 350px;
-	}
-}
-
-@media screen and (max-width: 480px) {
-	#map_container {
-		min-width: 260px;
-		min-height: 480px;
-	}
-}
-
-@media screen and (min-width: 481px) {
-	#map_container {
-		min-width: 260px;
-		min-height: 800px;
-	}
 }
